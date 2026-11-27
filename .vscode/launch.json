@@ -1,0 +1,36 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "OpenOCD: Debug",
+            "cwd": "${workspaceFolder}",
+            "executable": "${command:cmake.getLaunchTargetPath}",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "configFiles": [
+                "openocd.cfg",
+            ],
+            "rttConfig": {
+                "enabled": true,
+                "address": "auto",
+                "searchSize": 1024,
+                "decoders": [
+                    {
+                        "type": "console",
+                        "port": 0,
+                        "label": "bsp_log"
+                    }
+                ]
+            },
+            "liveWatch": {
+                "enabled": true,
+                "samplesPerSecond": 20
+            },
+            "preLaunchTask": "CMake: build",
+            "preLaunchCommands": [
+                "set remotetimeout 60"
+            ]
+        }
+    ]
+}
